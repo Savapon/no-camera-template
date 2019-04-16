@@ -169,7 +169,14 @@ public class MainActivity extends AppCompatActivity {
         // bitmap.compress should be put on different thread
         imageExecutor.submit(() -> {
             // you can change the compress format to WEBP in the line below
+
+            /* Challenge #2 Original
             bitmap.compress(Bitmap.CompressFormat.PNG, 50, byteArrayOutputStream);
+            */
+
+            bitmap.compress(Bitmap.CompressFormat.WEBP, 25, byteArrayOutputStream);
+
+
             try {
                 FileOutputStream fos = new FileOutputStream(myExternalFile);
                 fos.write(byteArrayOutputStream.toByteArray());
@@ -258,8 +265,18 @@ public class MainActivity extends AppCompatActivity {
         return bmpTheta;
     }
 
-
-
+/* Challenge #1
+    private Bitmap getBitmap(String photoPath) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 4;
+        Log.d(TAG, photoPath);
+        Bitmap imgTheta = BitmapFactory.decodeFile(photoPath, options);
+        ByteBuffer byteBufferTheta = ByteBuffer.allocate(imgTheta.getByteCount());
+        imgTheta.copyPixelsToBuffer(byteBufferTheta);
+        Bitmap bmpTheta = Bitmap.createScaledBitmap(imgTheta, 800, 400, true);
+    return bmpTheta;
+}
+*/
     private KeyCallback keyCallback = new KeyCallback() {
 
         Theta theta = Theta.createForPlugin();
